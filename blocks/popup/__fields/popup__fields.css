@@ -1,0 +1,21 @@
+.popup__fields {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-block-end: 0;
+  min-inline-size: min-content;
+  width: 358px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__fields {
+    width: 282px;
+  }
+}

@@ -1,5 +1,6 @@
 .profile {
   margin: 0 auto;
+  max-width: 880px;
   display: grid;
   grid-template-columns: 120px 1fr 150px;
   gap: 30px;
