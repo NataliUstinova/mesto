@@ -8,9 +8,9 @@
 
 **Используемые технологии**
 Media запросы
-Javascript
-Аминация по наведению
+Аминация CSS
 SVG
+Javascript 
 
 **Ссылка на проект**
-[Github Pages](#)
+[Github Pages](https://nataliustinova.github.io/mesto/)
