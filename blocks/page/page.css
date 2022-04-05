@@ -4,4 +4,5 @@
   margin: 0 auto;
   max-width: 1680px;
   color: #fff;
+  overflow-x: hidden;
 }

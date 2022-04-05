@@ -10,12 +10,12 @@
   padding-inline-end: 0;
   padding-block-end: 0;
   min-inline-size: min-content;
-  width: 358px;
+  max-width: 358px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 540px) {
   .popup__fields {
-    width: 282px;
+    max-width: 248px;
   }
 }

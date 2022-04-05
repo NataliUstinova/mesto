@@ -8,6 +8,6 @@
 @media screen and (max-width: 880px) {
   .header__line {
     box-sizing: border-box;
-    width: 100%;
+    width: 100vw;
   }
 }
