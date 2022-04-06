@@ -1,4 +1,5 @@
 .profile__job {
+  font-family: 'Inter-Regular', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -8,4 +9,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 550px) {
+  .profile__job {
+    font-size: 14px;
+    line-height: 1.21;
+  }  
 }

@@ -1,31 +1,31 @@
-const profile = document.querySelector('.profile');
-const profileEditButton = profile.querySelector('.profile__edit-button');
-const popup = document.querySelector('.popup');
-const popupCloseButton = popup.querySelector('.popup__close');
-const popupSaveButton = popup.querySelector('.popup__save');
+const profile = document.querySelector('.profile'); // профиль
+const profileEditButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования
+const popup = document.querySelector('.popup'); // попап
+const popupCloseButton = popup.querySelector('.popup__close'); //кнопка закрытия
 
-let profileName = profile.querySelector('.profile__name');
-let profileJob = profile.querySelector('.profile__job');
-let formElement = popup.querySelector('.editProfile');
-let nameInput = formElement.querySelector('.popup__input_value_name');
-let jobInput = formElement.querySelector('.popup__input_value_job');
+let profileName = profile.querySelector('.profile__name'); // имя
+let profileJob = profile.querySelector('.profile__job'); // деятельность
+let formElement = popup.querySelector('.popup__form'); // форма
+let nameInput = formElement.querySelector('.popup__input_value_name'); //поле ввода имени
+let jobInput = formElement.querySelector('.popup__input_value_job'); //поле ввода деятельности
 
 
-profileEditButton.addEventListener('click', openPopup);
 function openPopup() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
   popup.classList.add('popup_opened');
 }
+profileEditButton.addEventListener('click', openPopup);
 
-popupCloseButton.addEventListener('click', closePopup);
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
+popupCloseButton.addEventListener('click', closePopup);
 
-popupSaveButton.addEventListener('click', formSubmitHandler); 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup();
 }
-
+formElement.addEventListener('submit', formSubmitHandler); 
