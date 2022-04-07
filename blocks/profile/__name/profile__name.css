@@ -1,10 +1,9 @@
 .profile__name {
-  font-family: 'Inter-Medium', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
-  margin: 0 0 16px 0;
+  margin: 21px 0 0px 0;
   padding: 0;
   align-self: baseline;
   white-space: nowrap;
@@ -20,6 +19,7 @@
 
 @media screen and (max-width: 540px) {
   .profile__name {
+    margin: 0;
     text-align: center;
     font-size: 27px;
     line-height: 1.22;
