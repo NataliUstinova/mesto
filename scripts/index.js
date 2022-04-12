@@ -28,4 +28,4 @@ function formSubmitHandler (evt) {
     profileJob.textContent = jobInput.value;
     closePopup();
 }
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
