@@ -2,6 +2,7 @@ const profile = document.querySelector('.profile'); // профиль
 const profileEditButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования
 const popup = document.querySelector('.popup'); // попап
 const popupCloseButton = popup.querySelector('.popup__close'); //кнопка закрытия
+const picAddBtn = profile.querySelector('.profile__add-button');
 
 let profileName = profile.querySelector('.profile__name'); // имя
 let profileJob = profile.querySelector('.profile__job'); // деятельность
@@ -28,4 +29,4 @@ function formSubmitHandler (evt) {
     profileJob.textContent = jobInput.value;
     closePopup();
 }
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
