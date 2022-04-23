@@ -3,16 +3,13 @@ const popupEditProfile = document.querySelector('.popup__profile-info');
 const profile = document.querySelector('.profile'); // профиль
 const profileEditButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования
 const popupProfileInfo = document.querySelector('.popup__profile-info');
-
 //form popup edit profile
 const profileName = profile.querySelector('.profile__name'); // имя
 const profileJob = profile.querySelector('.profile__job'); // деятельность
 const formProfile = popupProfileInfo.querySelector('.popup__form'); // форма
 const nameInput = formProfile.querySelector('.popup__input_value_name'); //поле ввода имени
 const jobInput = formProfile.querySelector('.popup__input_value_job'); //поле ввода деятельности
-
-//buttons popup edit profile
-const submitProfileInfo = popupProfileInfo.querySelector('.popup__btn_profile-info'); // кнопка сохранить  изменения  профиля
+//button popup edit profile
 const closePopupEditBtn = document.querySelector('.popup__close-edit');
 
 //popup add pic
@@ -24,7 +21,6 @@ const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
 const addPicBtn = profile.querySelector('.profile__add-button');
 const closePopupAddPicBtn = document.querySelector('.popup__close-add-pic');
-const submitAddPicBtn = popupPicAdd.querySelector('.popup__btn_save-pic');  // кнопка добавить картинку
 
 //popup show pic
 const popupShowPic = document.querySelector('.popup__show-pic');
@@ -115,7 +111,7 @@ function addCard(item) {
   deleteBtn.addEventListener('click', () => {
     cardElement.remove();
   });
-  popupShowPic.addEventListener('click', () => {
+  cardImg.addEventListener('click', () => {
     imageDescription.textContent = item.name;
     fullImage.alt = item.name;
     fullImage.src = item.link;
@@ -123,8 +119,6 @@ function addCard(item) {
   });
   return cardElement;
 }
-
-
 
 initialCards.forEach((cardsList) => {
   renderCards(cardsList);
@@ -148,7 +142,7 @@ function cardFormSubmitHandler(event) {
   formCard.reset();
 }
 
-  //listeners
+//listeners
 profileEditButton.addEventListener('click', openProfilePopup);
 closePopupEditBtn.addEventListener('click', closeProfilePopup);
 closePopupAddPicBtn.addEventListener('click', closePicPopup);
