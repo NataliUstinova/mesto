@@ -35,11 +35,6 @@ const closePopupShowBtn = document.querySelector('.popup__close-show');
 //cards
 const cardsList = document.querySelector('.cards__list');
 const template = document.querySelector('.card__template').content.querySelector('.card__element');
-const cardElement = template.cloneNode(true);
-const cardTitle = cardElement.querySelector('.card__title');
-const cardImg = cardElement.querySelector('.card__image');
-const likeBtn = cardElement.querySelector('.card__like');
-const deleteBtn = cardElement.querySelector('.card__delete');
 
 const initialCards = [
   {
@@ -103,7 +98,12 @@ const renderCards = (card) => {
 
 function addCard(item) {
   const cardElement = template.cloneNode(true);
-  
+  const cardTitle = cardElement.querySelector('.card__title');
+  const cardImg = cardElement.querySelector('.card__image');
+  const likeBtn = cardElement.querySelector('.card__like');
+  const deleteBtn = cardElement.querySelector('.card__delete');
+
+
   cardTitle.textContent = item.name;
   cardImg.alt = item.name;
   cardImg.src = item.link;
