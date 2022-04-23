@@ -38,7 +38,7 @@
           <input id="name" class="popup__input popup__input_value_name" type="text" name="name" placeholder="Имя">
           <input id="job" class="popup__input popup__input_value_job" type="text" name="job" placeholder="Деятельность">
           <button class="popup__save popup__btn_profile-info" type="submit">Сохранить</button>
-          <button class="popup__close" type="button" aria-label="Закрыть"></button> 
+          <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
     </div>
   </div>
@@ -50,7 +50,7 @@
           <input id="pic-title" class="popup__input popup__input_value_pic-title" type="text" name="pic-title" placeholder="Название">
           <input id="pic-link" class="popup__input popup__input_value_pic-link" type="text" name="pic-link" placeholder="Ссылка на картинку">
           <button class="popup__save popup__btn_save-pic" type="submit">Сохранить</button>
-          <button class="popup__close" type="button" aria-label="Закрыть"></button>
+          <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
       </div>
     </div>  
@@ -58,7 +58,7 @@
     <div class="popup popup__show-pic">
       <div class="popup__fullscreen">
         <button class="popup__close popup__close-show" type="button" aria-label="Закрыть"></button>
-        <image class="popup__full-image" src="#" alt="Фото"/>
+        <img class="popup__full-image" src="#" alt="Фото"/>
         <p class="popup__description"></p>
       </div>
     </div>
@@ -66,7 +66,7 @@
     <template class="card card__template">
       <li class="card__element">
         <button type="button" class="card__delete"></button>
-        <img class="card__image"/>
+        <img class="card__image" src="#"/>
         <div class="card__info">
           <h3 class="card__title"></h3>
           <button class="card__like" type="button" aria-label="Нравится"></button>
