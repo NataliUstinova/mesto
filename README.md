@@ -9,8 +9,11 @@
 **Используемые технологии**
 Media запросы
 Аминация CSS
+Плавное открытие и закрытие модального окна CSS-стилями
 SVG
-Javascript 
+Javascript
+Template
+Стрелочные функции
 
 **Ссылка на проект**
 [Github Pages](https://nataliustinova.github.io/mesto/)
