@@ -1,19 +1,19 @@
 //popup edit profile
-const popupEditProfile = document.querySelector('.popup__profile-info');
+const popupEditProfile = document.querySelector('.popup_profile-info');
 const profile = document.querySelector('.profile'); // профиль
 const profileEditButton = profile.querySelector('.profile__edit-button'); //кнопка редактирования
-const popupProfileInfo = document.querySelector('.popup__profile-info');
+
 //form popup edit profile
 const profileName = profile.querySelector('.profile__name'); // имя
 const profileJob = profile.querySelector('.profile__job'); // деятельность
-const formProfile = popupProfileInfo.querySelector('.popup__form'); // форма
+const formProfile = popupEditProfile.querySelector('.popup__form'); // форма
 const nameInput = formProfile.querySelector('.popup__input_value_name'); //поле ввода имени
 const jobInput = formProfile.querySelector('.popup__input_value_job'); //поле ввода деятельности
 //button popup edit profile
 const closePopupEditBtn = document.querySelector('.popup__close-edit');
 
 //popup add pic
-const popupPicAdd = document.querySelector('.popup__add-pic');
+const popupPicAdd = document.querySelector('.popup_add-pic');
 //popup add pic form
 const formCard = document.querySelector('.popup__form_add-pic');
 const inputPicTitle = popupPicAdd.querySelector('.popup__input_value_pic-title'); // input pic title
@@ -23,7 +23,7 @@ const addPicBtn = profile.querySelector('.profile__add-button');
 const closePopupAddPicBtn = document.querySelector('.popup__close-add-pic');
 
 //popup show pic
-const popupShowPic = document.querySelector('.popup__show-pic');
+const popupShowPic = document.querySelector('.popup_show-pic');
 const fullImage = popupShowPic.querySelector('.popup__full-image');
 const imageDescription = popupShowPic.querySelector('.popup__description');
 const closePopupShowBtn = document.querySelector('.popup__close-show');
@@ -78,7 +78,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 function closeProfilePopup() {
-  popupProfileInfo.classList.remove('popup_opened');
+  popupEditProfile.classList.remove('popup_opened');
 }
 function closePicPopup() {
   popupPicAdd.classList.remove('popup_opened');
@@ -128,7 +128,7 @@ function editFormSubmitHandler (event) {
     event.preventDefault(); 
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popupProfileInfo);
+    closePopup(popupEditProfile);
 }
 
 function cardFormSubmitHandler(event) {
