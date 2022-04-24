@@ -78,13 +78,13 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 function closeProfilePopup() {
-  popupEditProfile.classList.remove('popup_opened');
+  closePopup(popupEditProfile);
 }
 function closePicPopup() {
-  popupPicAdd.classList.remove('popup_opened');
+  closePopup(popupPicAdd);
 }
 function closeShowPopup() {
-  popupShowPic.classList.remove('popup_opened');
+  closePopup(popupShowPic);
 }
 
 const renderCards = (card) => {
