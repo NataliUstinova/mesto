@@ -7,6 +7,7 @@
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -35,8 +36,22 @@
     <div class="popup__container">
       <h3 class="popup__heading">Редактировать профиль</h3>
         <form class="popup__form" name="edit">
-          <input id="name" class="popup__input popup__input_value_name" type="text" name="name" placeholder="Имя">
-          <input id="job" class="popup__input popup__input_value_job" type="text" name="job" placeholder="Деятельность">
+          <input id="name" 
+                 required
+                 minlength="2"
+                 maxlength="40"
+                 class="popup__input popup__input_value_name" 
+                 type="text" 
+                 name="name" 
+                 placeholder="Имя">
+          <input id="job" 
+                 required
+                 minlength="2"
+                 maxlength="200"
+                 class="popup__input popup__input_value_job" 
+                 type="text" 
+                 name="job" 
+                 placeholder="Деятельность">
           <button class="popup__save" type="submit">Сохранить</button>
           <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
@@ -47,8 +62,21 @@
       <div class="popup__container">
         <h3 class="popup__heading">Новое место</h3>
         <form class="popup__form popup__form_add-pic" name="picture">
-          <input id="pic-title" class="popup__input popup__input_value_pic-title" type="text" name="pic-title" placeholder="Название">
-          <input id="pic-link" class="popup__input popup__input_value_pic-link" type="text" name="pic-link" placeholder="Ссылка на картинку">
+          <input id="pic-title" 
+                 required
+                 minlength="2"
+                 maxlength="30"
+                 class="popup__input popup__input_value_pic-title" 
+                 type="text" 
+                 name="pic-title" 
+                 placeholder="Название">
+          <input id="pic-link" 
+                 required 
+                 class="popup__input 
+                 popup__input_value_pic-link" 
+                 type="url" 
+                 name="pic-link" 
+                 placeholder="Ссылка на картинку">
           <button class="popup__save" type="submit">Сохранить</button>
           <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
