@@ -11,7 +11,7 @@ const formProfile = popupEditProfile.querySelector('.popup__form'); // форм�
 const nameInput = formProfile.querySelector('.popup__input_value_name'); //поле ввода имени
 const jobInput = formProfile.querySelector('.popup__input_value_job'); //поле ввода деятельности
 //button popup edit profile
-const closePopupEditBtn = document.querySelector('.popup__close-edit');
+const popupEditExitButton = document.querySelector('.popup__close-edit');
 
 //popup add pic
 const popupPicAdd = document.querySelector('.popup_add-pic');
@@ -20,14 +20,14 @@ const formCard = document.querySelector('.popup__form_add-pic');
 const inputPicTitle = popupPicAdd.querySelector('.popup__input_value_pic-title'); // input pic title
 const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
-const addPicBtn = profile.querySelector('.profile__add-button');
-const closePopupAddPicBtn = document.querySelector('.popup__close-add-pic');
+const newPicButton = profile.querySelector('.profile__add-button');
+const picExitButton = document.querySelector('.popup__close-add-pic');
 
 //popup show pic
 const popupShowPic = document.querySelector('.popup_show-pic');
 const fullImage = popupShowPic.querySelector('.popup__full-image');
 const imageDescription = popupShowPic.querySelector('.popup__description');
-const closePopupShowBtn = document.querySelector('.popup__close-show');
+const popupShowExitButton = document.querySelector('.popup__close-show');
 
 //cards
 const cardsList = document.querySelector('.cards__list');
@@ -99,7 +99,7 @@ function closeByEscape(event) {
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target === evt.currentTarget) {
+    if (evt.target === evt.currentTarget || evt.target.classList.contains("popup__close")) {
       closePopup(popup);
     }
   });
@@ -162,11 +162,7 @@ function cardFormSubmitHandler(event) {
 
 //listeners
 profileEditButton.addEventListener('click', openProfilePopup);
-closePopupEditBtn.addEventListener('click', closeProfilePopup);
-closePopupAddPicBtn.addEventListener('click', closePicPopup);
-closePopupShowBtn.addEventListener('click', closeShowPopup);
-addPicBtn.addEventListener('click',openPicPopup);
-
+newPicButton.addEventListener('click',openPicPopup);
 formProfile.addEventListener('submit', editFormSubmitHandler);
 formCard.addEventListener('submit', cardFormSubmitHandler);
 

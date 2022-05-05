@@ -9,7 +9,6 @@
   left: 36px;
   z-index: 1;
   max-width: 358px;
-  border: none;
 }
 
 .popup__input_type_error:last-of-type {
