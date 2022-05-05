@@ -7,7 +7,6 @@
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./scripts/index.js"></script>
-  <script defer src="./scripts/validate.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -35,24 +34,26 @@
   <div class="popup popup_profile-info">
     <div class="popup__container">
       <h3 class="popup__heading">Редактировать профиль</h3>
-        <form class="popup__form" name="edit">
+        <form class="popup__form popup__form_edit-profile" name="edit" novalidate>
           <input id="name" 
                  required
                  minlength="2"
                  maxlength="40"
-                 class="popup__input popup__input_value_name" 
+                 class="popup__input popup__input_value_name form__input popup__text" 
                  type="text" 
                  name="name" 
                  placeholder="Имя">
+          <span class="popup__input_error name-input_error"></span>
           <input id="job" 
                  required
                  minlength="2"
                  maxlength="200"
-                 class="popup__input popup__input_value_job" 
+                 class="popup__input popup__input_value_job form__input popup__text" 
                  type="text" 
                  name="job" 
                  placeholder="Деятельность">
-          <button class="popup__save" type="submit">Сохранить</button>
+          <span class="popup__input_error job-input_error"></span>
+          <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
     </div>
@@ -61,23 +62,24 @@
     <div class="popup popup_add-pic">
       <div class="popup__container">
         <h3 class="popup__heading">Новое место</h3>
-        <form class="popup__form popup__form_add-pic" name="picture">
+        <form class="popup__form popup__form_add-pic" name="picture" novalidate>
           <input id="pic-title" 
                  required
                  minlength="2"
                  maxlength="30"
-                 class="popup__input popup__input_value_pic-title" 
+                 class="popup__input popup__input_value_pic-title form__input popup__text" 
                  type="text" 
                  name="pic-title" 
                  placeholder="Название">
+          <span class="popup__input_error name-input_error"></span>
           <input id="pic-link" 
                  required 
-                 class="popup__input 
-                 popup__input_value_pic-link" 
+                 class="popup__input popup__input_value_pic-link form__input" 
                  type="url" 
                  name="pic-link" 
                  placeholder="Ссылка на картинку">
-          <button class="popup__save" type="submit">Сохранить</button>
+          <span class="popup__input_error url-input_error"></span>
+          <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
       </div>
@@ -101,5 +103,6 @@
         </div>
       </li>
     </template>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>
