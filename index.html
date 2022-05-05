@@ -36,24 +36,24 @@
       <h3 class="popup__heading">Редактировать профиль</h3>
       <fieldset class="popup__fieldset">
         <form class="popup__form popup__form_edit-profile" name="edit" novalidate>
-          <input id="name" 
+          <input id="profile-name" 
                  required
                  minlength="2"
                  maxlength="40"
-                 class="popup__input popup__input_value_name form__input popup__text" 
+                 class="popup__input popup__input_value_name popup__text" 
                  type="text" 
                  name="name" 
                  placeholder="Имя">
-          <span class="popup__input_error name_error"></span>
-          <input id="job" 
+          <span class="profile-name_error"></span>
+          <input id="profile-job" 
                  required
                  minlength="2"
                  maxlength="200"
-                 class="popup__input popup__input_value_job form__input popup__text" 
+                 class="popup__input popup__input_value_job popup__text" 
                  type="text" 
                  name="job" 
                  placeholder="Деятельность">
-          <span class="popup__input_error job_error"></span>
+          <span class="profile-job_error"></span>
           <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
@@ -70,18 +70,18 @@
                  required
                  minlength="2"
                  maxlength="30"
-                 class="popup__input popup__input_value_pic-title form__input popup__text" 
+                 class="popup__input popup__input_value_pic-title" 
                  type="text" 
                  name="pic-title" 
                  placeholder="Название">
-          <span class="popup__input_error pic-title_error"></span>
+          <span class="pic-title_error"></span>
           <input id="pic-link" 
                  required 
-                 class="popup__input popup__input_value_pic-link form__input" 
+                 class="popup__input popup__input_value_pic-link" 
                  type="url" 
                  name="pic-link" 
                  placeholder="Ссылка на картинку">
-          <span class="popup__input_error pic-link_error"></span>
+          <span class="pic-link_error"></span>
           <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
