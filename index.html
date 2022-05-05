@@ -34,6 +34,7 @@
   <div class="popup popup_profile-info">
     <div class="popup__container">
       <h3 class="popup__heading">Редактировать профиль</h3>
+      <fieldset class="popup__fieldset">
         <form class="popup__form popup__form_edit-profile" name="edit" novalidate>
           <input id="name" 
                  required
@@ -43,7 +44,7 @@
                  type="text" 
                  name="name" 
                  placeholder="Имя">
-          <span class="popup__input_error name-input_error"></span>
+          <span class="popup__input_error name_error"></span>
           <input id="job" 
                  required
                  minlength="2"
@@ -52,16 +53,18 @@
                  type="text" 
                  name="job" 
                  placeholder="Деятельность">
-          <span class="popup__input_error job-input_error"></span>
+          <span class="popup__input_error job_error"></span>
           <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
+      </fieldset>
     </div>
   </div>
 
     <div class="popup popup_add-pic">
       <div class="popup__container">
         <h3 class="popup__heading">Новое место</h3>
+        <fieldset class="popup__fieldset">
         <form class="popup__form popup__form_add-pic" name="picture" novalidate>
           <input id="pic-title" 
                  required
@@ -71,17 +74,18 @@
                  type="text" 
                  name="pic-title" 
                  placeholder="Название">
-          <span class="popup__input_error name-input_error"></span>
+          <span class="popup__input_error pic-title_error"></span>
           <input id="pic-link" 
                  required 
                  class="popup__input popup__input_value_pic-link form__input" 
                  type="url" 
                  name="pic-link" 
                  placeholder="Ссылка на картинку">
-          <span class="popup__input_error url-input_error"></span>
+          <span class="popup__input_error pic-link_error"></span>
           <button class="popup__save form__submit" type="submit">Сохранить</button>
           <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
+        </fieldset>
       </div>
     </div>  
   
