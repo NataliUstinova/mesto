@@ -14,6 +14,8 @@ SVG
 Javascript
 Template
 Стрелочные функции
+Валидация форм
+Действия на определенные собития и нажатия клавиш
 
 **Ссылка на проект**
 [Github Pages](https://nataliustinova.github.io/mesto/)
