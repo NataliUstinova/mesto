@@ -34,37 +34,38 @@
   <div class="popup popup_profile-info">
     <div class="popup__container">
       <h3 class="popup__heading">Редактировать профиль</h3>
-      <fieldset class="popup__fieldset">
         <form class="popup__form popup__form_edit-profile" name="edit" novalidate>
-          <input id="profile-name" 
-                 required
-                 minlength="2"
-                 maxlength="40"
-                 class="popup__input popup__input_value_name popup__text" 
-                 type="text" 
-                 name="name" 
-                 placeholder="Имя">
-          <span class="profile-name-error"></span>
-          <input id="profile-job" 
-                 required
-                 minlength="2"
-                 maxlength="200"
-                 class="popup__input popup__input_value_job popup__text" 
-                 type="text" 
-                 name="job" 
-                 placeholder="Деятельность">
-          <span class="profile-job-error"></span>
+<!--          <div class="popup__field">-->
+            <input id="profile-name" 
+                   required
+                   minlength="2"
+                   maxlength="40"
+                   class="popup__input popup__input_value_name popup__text" 
+                   type="text" 
+                   name="name" 
+                   placeholder="Имя">
+            <span class="profile-name-error"></span>
+<!--          </div>-->
+<!--          <label class="popup__field">-->
+            <input id="profile-job" 
+                   required
+                   minlength="2"
+                   maxlength="200"
+                   class="popup__input popup__input_value_job popup__text" 
+                   type="text" 
+                   name="job" 
+                   placeholder="Деятельность">
+            <span class="profile-job-error"></span>
+<!--          </label>-->
           <button class="popup__save" type="submit">Сохранить</button>
           <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button> 
       </form>
-      </fieldset>
     </div>
   </div>
 
     <div class="popup popup_add-pic">
       <div class="popup__container">
         <h3 class="popup__heading">Новое место</h3>
-        <fieldset class="popup__fieldset">
         <form class="popup__form popup__form_add-pic" name="picture" novalidate>
           <input id="pic-title" 
                  required
@@ -85,7 +86,6 @@
           <button class="popup__save" type="submit">Сохранить</button>
           <button class="popup__close popup__close-add-pic" type="button" aria-label="Закрыть"></button>
         </form>
-        </fieldset>
       </div>
     </div>  
   
