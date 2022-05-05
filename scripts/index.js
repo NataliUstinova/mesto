@@ -10,8 +10,6 @@ const profileJob = profile.querySelector('.profile__job'); // деятельно
 const formProfile = popupEditProfile.querySelector('.popup__form'); // форма
 const nameInput = formProfile.querySelector('.popup__input_value_name'); //поле ввода имени
 const jobInput = formProfile.querySelector('.popup__input_value_job'); //поле ввода деятельности
-//button popup edit profile
-const popupEditExitButton = document.querySelector('.popup__close-edit');
 
 //popup add pic
 const popupPicAdd = document.querySelector('.popup_add-pic');
@@ -21,13 +19,11 @@ const inputPicTitle = popupPicAdd.querySelector('.popup__input_value_pic-title')
 const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
 const newPicButton = profile.querySelector('.profile__add-button');
-const picExitButton = document.querySelector('.popup__close-add-pic');
 
 //popup show pic
 const popupShowPic = document.querySelector('.popup_show-pic');
 const fullImage = popupShowPic.querySelector('.popup__full-image');
 const imageDescription = popupShowPic.querySelector('.popup__description');
-const popupShowExitButton = document.querySelector('.popup__close-show');
 
 //cards
 const cardsList = document.querySelector('.cards__list');
@@ -79,15 +75,6 @@ function openPicPopup() {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-}
-function closeProfilePopup() {
-  closePopup(popupEditProfile);
-}
-function closePicPopup() {
-  closePopup(popupPicAdd);
-}
-function closeShowPopup() {
-  closePopup(popupShowPic);
 }
 
 function closeByEscape(event) {
