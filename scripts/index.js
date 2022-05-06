@@ -19,7 +19,7 @@ const inputPicTitle = popupPicAdd.querySelector('.popup__input_value_pic-title')
 const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
 const newPicButton = profile.querySelector('.profile__add-button');
-
+const popupAddPic = document.querySelector('.popup__save-add-pic');
 //popup show pic
 const popupShowPic = document.querySelector('.popup_show-pic');
 const fullImage = popupShowPic.querySelector('.popup__full-image');
@@ -69,6 +69,9 @@ function openProfilePopup() {
 }
 
 function openPicPopup() {
+  formCard.reset();
+  popupAddPic.disabled = true;
+  popupAddPic.classList.add('popup__save_disabled');
   openPopup(popupPicAdd);
 }
 
