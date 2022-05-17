@@ -29,6 +29,22 @@ const popupAddPic = document.querySelector('.popup__save-add-pic');
 //cards
 const cardsList = document.querySelector('.cards__list');
 
+//validation options
+const validationOptions = {
+  formElementSelector: '.popup__form',
+  inputElementSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+}
+
+const editProfileValidation = new FormValidator(validationOptions, formProfile);
+const addCardValidation = new FormValidator(validationOptions, formCard);
+
+editProfileValidation.enableValidation();
+addCardValidation.enableValidation();
+
 //functions
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -36,13 +52,14 @@ export function openPopup(popup) {
 }
 
 function openProfilePopup() {
+  editProfileValidation.resetForm();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEditProfile);
 }
 
 function openPicPopup() {
-  formCard.reset();
+  addCardValidation.resetForm();
   popupAddPic.disabled = true;
   popupAddPic.classList.add('popup__save_disabled');
   openPopup(popupPicAdd);
