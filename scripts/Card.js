@@ -2,7 +2,6 @@ import { openPopup } from './index.js'
 import { popupShowPic, fullImage, imageDescription } from './constants.js'
 
 export class Card {
-  
   constructor(card, template) {
     this._title = card.name;
     this._link = card.link;
@@ -10,13 +9,13 @@ export class Card {
   }
   
   _likeCard = () => {
-      this._likeButton.classList.toggle('card__like_active')
-    }
-    
+    this._likeButton.classList.toggle('card__like_active')
+  }
+  
   _deleteCard = () => {
     this._cardElement.remove();
   }
-    
+  
   _showImage = () => {
     imageDescription.textContent = this._title;
     fullImage.alt = this._title;
@@ -25,10 +24,10 @@ export class Card {
   }
   
   _setEventListeners = () => {
-      this._likeButton.addEventListener('click',  this._likeCard);
-      this._deleteButton.addEventListener('click', this._deleteCard);
-      this._cardPic.addEventListener('click', this._showImage);
-    }
+    this._likeButton.addEventListener('click',  this._likeCard);
+    this._deleteButton.addEventListener('click', this._deleteCard);
+    this._cardPic.addEventListener('click', this._showImage);
+  }
   //публичный метод создания карточки
   addCard() {
     this._cardElement = this._template.cloneNode(true);
