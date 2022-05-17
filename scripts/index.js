@@ -23,10 +23,7 @@ const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
 const newPicButton = profile.querySelector('.profile__add-button');
 const popupAddPic = document.querySelector('.popup__save-add-pic');
-//popup show pic
-export const popupShowPic = document.querySelector('.popup_show-pic');
-export const fullImage = popupShowPic.querySelector('.popup__full-image');
-export const imageDescription = popupShowPic.querySelector('.popup__description');
+
 
 //cards
 const cardsList = document.querySelector('.cards__list');
