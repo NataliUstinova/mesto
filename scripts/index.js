@@ -98,8 +98,8 @@ popups.forEach((popup) => {
   });
 });
 
-function addCard(item) {
-  const newCard = new Card(item, '.card__element');
+function addCard(card) {
+  const newCard = new Card(card, '.card__template');
   return newCard.addCard();
 }
 
