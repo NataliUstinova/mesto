@@ -60,8 +60,7 @@ function openProfilePopup() {
 
 function openPicPopup() {
   addCardValidation.resetForm();
-  popupAddPic.disabled = true;
-  popupAddPic.classList.add('popup__save_disabled');
+  addCardValidation.toggleButtonState();
   openPopup(popupPicAdd);
 }
 
@@ -95,18 +94,16 @@ const renderCards = (card) => {
   cardsList.prepend(cardElements);
 };
 
-initialCards.forEach((cardsList) => {
-  renderCards(cardsList);
-});
+initialCards.forEach(renderCards);
 
-function editFormSubmitHandler (event) {
+function handleProfileFormSubmit (event) {
     event.preventDefault(); 
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popupEditProfile);
 }
 
-function cardFormSubmitHandler(event) {
+function handleCardFormSubmit(event) {
   event.preventDefault();
   const inputCard = {
     name: inputPicTitle.value,
@@ -120,6 +117,6 @@ function cardFormSubmitHandler(event) {
 //listeners
 profileEditButton.addEventListener('click', openProfilePopup);
 newPicButton.addEventListener('click',openPicPopup);
-formProfile.addEventListener('submit', editFormSubmitHandler);
-formCard.addEventListener('submit', cardFormSubmitHandler);
+formProfile.addEventListener('submit', handleProfileFormSubmit);
+formCard.addEventListener('submit', handleCardFormSubmit);
 
