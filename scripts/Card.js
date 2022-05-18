@@ -9,7 +9,7 @@ export class Card {
   }
   
   _likeCard = () => {
-    this._likeButton.classList.toggle('card__like_active')
+    this._likeButton.classList.toggle('card__like_active');
   }
   
   _deleteCard = () => {
@@ -30,7 +30,7 @@ export class Card {
   }
   //публичный метод создания карточки
   addCard() {
-    this._cardElement = this._template.cloneNode(true);
+    this._cardElement = this._template.querySelector('.card__element').cloneNode(true);
     this._cardPic = this._cardElement.querySelector('.card__image');
     this._likeButton = this._cardElement.querySelector('.card__like');
     this._deleteButton = this._cardElement.querySelector('.card__delete');
