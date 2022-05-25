@@ -1,6 +1,7 @@
-import { Card } from './Card.js'
-import { initialCards } from './constants.js';
-import { FormValidator } from './FormValidator.js'
+import './index.css';
+import { Card } from '../scripts/Card.js'
+import { initialCards } from '../scripts/constants.js';
+import { FormValidator } from '../scripts/FormValidator.js'
 
 const popups = document.querySelectorAll('.popup');
 //popup edit profile
@@ -23,8 +24,6 @@ const inputPicTitle = popupPicAdd.querySelector('.popup__input_value_pic-title')
 const inputPicLink = popupPicAdd.querySelector('.popup__input_value_pic-link');
 //popup add pic buttons
 const newPicButton = profile.querySelector('.profile__add-button');
-const popupAddPic = document.querySelector('.popup__save-add-pic');
-
 
 //cards
 const cardsList = document.querySelector('.cards__list');

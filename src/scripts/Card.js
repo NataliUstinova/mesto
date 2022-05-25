@@ -1,4 +1,4 @@
-import { openPopup } from './index.js'
+import { openPopup } from '../pages'
 import { popupShowPic, fullImage, imageDescription } from './constants.js'
 
 export class Card {
