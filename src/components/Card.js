@@ -1,7 +1,7 @@
 import { openPopup } from '../pages'
 import { popupShowPic, fullImage, imageDescription } from './constants.js'
 
-export class Card {
+export default class Card {
   constructor(card, template) {
     this._title = card.name;
     this._link = card.link;
