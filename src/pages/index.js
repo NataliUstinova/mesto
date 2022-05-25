@@ -1,7 +1,11 @@
 import './index.css';
-import { Card } from '../scripts/Card.js'
-import { initialCards } from '../scripts/constants.js';
-import { FormValidator } from '../scripts/FormValidator.js'
+import { initialCards } from '../components/constants.js';
+import Section from '../components/Section.js'
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js';
+import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js'
 
 const popups = document.querySelectorAll('.popup');
 //popup edit profile
