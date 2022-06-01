@@ -20,5 +20,34 @@
 **ПРОЕКТНАЯ РАБОТА №7**
 * Был выполнен рефакторинг с использованием классов и модулей
 
+**ПРОЕКТНАЯ РАБОТА №8**
+* Подключен и настроен Webpack, Babel, Postcss
+* Добавлены новые классы
+* Устранены сильные связи
+
 **Ссылка на проект**
 [Github Pages](https://nataliustinova.github.io/mesto/)
+
+## GETTING STARTED
+
+To work with the project you will need:
+
+1. Install dependencies
+
+```
+npm install
+```
+
+### ENVIRONMENTS & DEPLOYMENT
+
+2. To run localhost:
+
+```
+npm run dev
+```
+
+3. To create a build
+
+```
+npm build
+```

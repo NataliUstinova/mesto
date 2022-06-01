@@ -12,6 +12,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: '',
   },
+  devtool: 'source-map',
   mode: 'development',
   devServer: {
     static: {
