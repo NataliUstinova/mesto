@@ -32,6 +32,12 @@ const newPicButton = profile.querySelector('.profile__add-button');
 //cards
 const cardsList = document.querySelector('.cards__list');
 
+//classes
+const section = new Section() {
+  items  [],
+}
+
+
 //validation options
 const validationOptions = {
   formElementSelector: '.popup__form',

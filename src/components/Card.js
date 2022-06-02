@@ -1,11 +1,9 @@
-import { openPopup } from '../pages'
-import { popupShowPic, fullImage, imageDescription } from './constants.js'
-
 export default class Card {
-  constructor(card, template) {
+  constructor(card, template, handleCardClick) {
     this._title = card.name;
     this._link = card.link;
     this._template = document.querySelector(template).content;
+    this._handleCardClick = handleCardClick;
   }
   
   _likeCard = () => {
@@ -16,17 +14,10 @@ export default class Card {
     this._cardElement.remove();
   }
   
-  _showImage = () => {
-    imageDescription.textContent = this._title;
-    fullImage.alt = this._title;
-    fullImage.src = this._link;
-    openPopup(popupShowPic);
-  }
-  
   _setEventListeners = () => {
     this._likeButton.addEventListener('click',  this._likeCard);
     this._deleteButton.addEventListener('click', this._deleteCard);
-    this._cardPic.addEventListener('click', this._showImage);
+    this._cardPic.addEventListener('click', this._handleCardClick);
   }
   //публичный метод создания карточки
   addCard() {
