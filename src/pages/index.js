@@ -32,34 +32,17 @@ const inputPicLink = document.querySelector('.popup__input_value_pic-link');
 // //popup add pic buttons
 const newPicButton = profile.querySelector('.profile__add-button');
 
-//cards
-//const cardsList = document.querySelector('.cards__list');
-// const cardsList = document.querySelector('.elements');
-//classes
+//TODO починить открытие картинки
+//TODO починить попап форму профиля
+//TODO починить добавление карточки
 
-// const userInfo = new UserInfo({
-//   nameElementSelector: '.popup__input_value_name',
-//   userInfoElementSelector: '.popup__input_value_job'
-// });
-
-
-// function addCard(card) {
-//   const newCard = new Card(card, '.card__template');
-//   return newCard.addCard();
-// }
-// const renderCards = (card) => {
-//   const cardElements = addCard(card);
-//   cardsList.prepend(cardElements);
-// };
-//
-// initialCards.forEach(renderCards);
+//Card section
+const cardsListSelector = '.cards__list';
+const cardTemplate = '.card__template';
 
 function createCard(item) {
-  return new Card(item, '.card__template').addCard(item);
+  return new Card(item, cardTemplate).addCard(item);
 }
-
-const cardsListSelector = '.cards__list';
-
 const cardsList = new Section({
     items:  initialCards,
     renderer: (item) => {cardsList.addItem(createCard(item));}},
@@ -98,14 +81,18 @@ addCardPopup.setEventListeners()
 
 newPicButton.addEventListener('click', () => addCardPopup.open());
 
-const showImagePopup = new PopupWithImage('.popup__full-image');
+const showImagePopupSelector = '.popup__full-image';
+const showImagePopup = new PopupWithImage(showImagePopupSelector);
 showImagePopup.setEventListeners()
 
+const imageDescription = document.querySelector('.popup__description');
+const imageLink = document.querySelector('.popup__full-image');
+
 function handleCardClick(name, link) {
-  inputPicTitle.textContent = name;
-  inputPicTitle.alt = name;
-  inputPicLink.src = link;
-  addCardPopup.open(name, link);
+  imageDescription.textContent = name;
+  imageDescription.alt = name;
+  imageLink.src = link;
+  showImagePopup.open(name, link);
 }
 
 handleCardClick()
