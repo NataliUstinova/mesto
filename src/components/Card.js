@@ -19,13 +19,16 @@ export default class Card {
     this._deleteButton.addEventListener('click', this._deleteCard);
     this._cardPic.addEventListener('click', this._handleCardClick);
   }
+  _getTemplate = () => {
+    return this._cardElement = this._template.querySelector('.card__element').cloneNode(true);
+  }
+  
   //публичный метод создания карточки
   addCard() {
-    this._cardElement = this._template.querySelector('.card__element').cloneNode(true);
+    this._getTemplate();
     this._cardPic = this._cardElement.querySelector('.card__image');
     this._likeButton = this._cardElement.querySelector('.card__like');
     this._deleteButton = this._cardElement.querySelector('.card__delete');
-  
     this._cardPic.src = this._link;
     this._cardPic.alt = this._title;
     this._cardElement.querySelector('.card__title').textContent = this._title;
