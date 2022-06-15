@@ -4,12 +4,7 @@ class Api {
     this._headers = headers;
   }
   
-<<<<<<< HEAD
-  
   getUserInfoServer() {
-=======
-  getUserInfo() {
->>>>>>> d3b81b2ff8dc1bc6946efd6bba919cde65f9ecbc
     return  fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
