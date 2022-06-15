@@ -12,13 +12,16 @@ class Api {
     return  fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => this._checkServerResponse(res))
+      .then(res => this._checkServerResponse(res));
   }
   getInitialCards() {
-    // ...
+    return  fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
+    })
+      .then(res => this._checkServerResponse(res));
   }
 }
-const api = new Api({
+export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
   headers: {
     authorization: '46f10111-7535-41c9-bac2-e4a6e0f14e0d',

@@ -19,6 +19,7 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import { api } from '../components/Api.js';
 
 const editProfileValidation = new FormValidator(validationOptions, formProfile);
 const addCardValidation = new FormValidator(validationOptions, formCard);
