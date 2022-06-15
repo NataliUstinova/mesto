@@ -9,16 +9,29 @@ class Api {
   }
   
   getUserInfoServer() {
-    return  fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
       .then(res => this._checkServerResponse(res));
   }
+  
   getInitialCards() {
-    return  fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
       .then(res => this._checkServerResponse(res));
+  }
+  
+  editProfile(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about
+      })
+    })
+      .then(res => this._checkServerResponse(res))
   }
 }
 export const api = new Api({
