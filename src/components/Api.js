@@ -12,14 +12,14 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => this._checkServerResponse(res));
+      .then(this._checkServerResponse);
   }
   
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => this._checkServerResponse(res));
+      .then(this._checkServerResponse);
   }
   
   editProfile(name, about) {
@@ -31,7 +31,19 @@ class Api {
         about
       })
     })
-      .then(res => this._checkServerResponse(res))
+      .then(this._checkServerResponse)
+  }
+  
+  addCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link
+      })
+    })
+      .then(this._checkServerResponse)
   }
 }
 export const api = new Api({
