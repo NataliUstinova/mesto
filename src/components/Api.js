@@ -4,11 +4,15 @@ class Api {
     this._headers = headers;
   }
   
+  _checkServerResponse(res) {
+    return res.ok ? res.json() : Promise.reject(res.status);
+  }
+  
   getUserInfoServer() {
     return  fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then(res => this._checkServerResponse(res))
   }
   getInitialCards() {
     // ...
