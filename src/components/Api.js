@@ -34,7 +34,7 @@ class Api {
       .then(this._checkServerResponse)
   }
   
-  addCard(name, link) {
+  addUserCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
