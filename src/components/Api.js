@@ -46,6 +46,16 @@ class Api {
       .then(this._checkServerResponse)
   }
   
+  changeUserAvatar(userAvatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: userAvatar,
+      })
+    })
+      .then(this._checkServerResponse)
+  }
   
 }
 export const api = new Api({
