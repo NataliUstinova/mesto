@@ -87,3 +87,4 @@ newPicButton.addEventListener('click', () => addCardPopup.open());
 
 const showImagePopup = new PopupWithImage(showImagePopupSelector);
 showImagePopup.setEventListeners();
+
