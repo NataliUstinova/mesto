@@ -5,7 +5,7 @@ class Api {
   }
   
   _checkServerResponse(res) {
-    return res.ok ? res.json() : Promise.reject(res.status);
+    res.ok ? res.json() : Promise.reject(res.status);
   }
   
   getUserInfoServer() {
@@ -57,6 +57,29 @@ class Api {
       .then(this._checkServerResponse)
   }
   
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkServerResponse)
+  }
+  
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._checkServerResponse)
+  }
+  
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._checkServerResponse)
+  }
 }
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
