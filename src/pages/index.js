@@ -20,6 +20,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
+import Popup from "../components/Popup";
 
 const editProfileValidation = new FormValidator(validationOptions, formProfile);
 const addCardValidation = new FormValidator(validationOptions, formCard);
@@ -27,9 +28,29 @@ const addCardValidation = new FormValidator(validationOptions, formCard);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+// const deletePopup = new PopupWithForm('.popup_delete-pic');
+
+function render(card) {
+  const newCard = {
+    name: card.name,
+    link: card.link,
+    likes: card.likes,
+    id: card._id,
+    userId: userId,
+    ownerId: card.owner._id
+  }
+  
+  const cardElement = createCard(newCard);
+  cardsList.append(cardElement);
+}
+
+let userId;
+
 function createCard(item) {
   return new Card(item, cardTemplate, () => {
     showImagePopup.open({name: item.name, link: item.link});
+  }, id => {
+    deletePopup.open();
   }).addCard(item);
 }
 const cardsList = new Section({
@@ -87,4 +108,5 @@ newPicButton.addEventListener('click', () => addCardPopup.open());
 
 const showImagePopup = new PopupWithImage(showImagePopupSelector);
 showImagePopup.setEventListeners();
+
 
