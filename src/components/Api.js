@@ -23,7 +23,7 @@ class Api {
       .then(this._checkServerResponse);
   }
   
-  editProfile(name, about) {
+  editProfile({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,

@@ -30,6 +30,9 @@ addCardValidation.enableValidation();
 
 // const deletePopup = new PopupWithForm('.popup_delete-pic');
 
+
+let userId;
+
 function render(card) {
   const newCard = {
     name: card.name,
@@ -44,7 +47,6 @@ function render(card) {
   cardsList.append(cardElement);
 }
 
-let userId;
 
 function createCard(item) {
   return new Card(item, cardTemplate, () => {
@@ -68,9 +70,28 @@ cardsList.renderItems();
 
 const user = new UserInfo({nameElementSelector: '.profile__name', jobElementSelector: '.profile__job'});
 
+const userData = await api.getUserInfoServer()
+  .then((user) => {
+    console.log(user);
+    return user;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+user.setUserInfo({name: userData.name, job: userData.about});
+
 const profilePopup = new PopupWithForm({
-  handleFormSubmit: (item) => {
-    user.setUserInfo({name: item.name, job: item.job});
+  handleFormSubmit: async (item) => {
+    const userData = await api.editProfile({name: item.name, about: item.job})
+      .then((user) => {
+        console.log(user);
+        return user;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    user.setUserInfo({name: userData.name, job: userData.about});
     profilePopup.close();
     profilePopup.resetForm();
     editProfileValidation.toggleButtonState();
