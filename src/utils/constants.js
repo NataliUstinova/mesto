@@ -19,6 +19,7 @@ export const jobInput = formProfile.querySelector('.popup__input_value_job'); //
 export const popupPicAddSelector = '.popup_add-pic'; 
 //popup add pic form
 export const formCard = document.querySelector('.popup__form_add-pic');
+export const formAvatar = document.querySelector('.popup__form_edit-avatar');
 //popup add pic button
 export const newPicButton = profile.querySelector('.profile__add-button');
 

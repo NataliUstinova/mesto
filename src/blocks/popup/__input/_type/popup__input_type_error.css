@@ -11,7 +11,7 @@
   max-width: 358px;
 }
 
-.popup__input_type_error:last-of-type {
+.popup__input_type_error:nth-child(2) {
   top: 204px;
 }
 
@@ -20,7 +20,8 @@
     top: 147px;
     left: 22px;
   }
-  .popup__input_type_error:last-of-type {
+  .popup__input_type_error:nth-child(2) {
     top: 210px;
   }
 }
+

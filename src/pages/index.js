@@ -12,6 +12,7 @@ import { initialCards,
   cardsListSelector,
   cardTemplate,
   showImagePopupSelector,
+  formAvatar,
   } from '../utils/constants.js';
 import Section from '../components/Section.js'
 import Card from '../components/Card.js'
@@ -20,15 +21,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
-import Popup from "../components/Popup";
 
+//Validation
 const editProfileValidation = new FormValidator(validationOptions, formProfile);
 const addCardValidation = new FormValidator(validationOptions, formCard);
+const avatarValidation = new FormValidator(validationOptions, formAvatar);
 
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
-
-// const deletePopup = new PopupWithForm('.popup_delete-pic');
+avatarValidation.enableValidation();
 
 
 let userId;
@@ -47,13 +48,24 @@ function render(card) {
   cardsList.append(cardElement);
 }
 
+// const handleLikeClick = () => {
+//   const likedCard = 
+// }
+
 
 function createCard(item) {
   return new Card(item, cardTemplate, () => {
   //   showImagePopup.open({name: item.name, link: item.link});
   // }, id => {
     // deletePopup.open();
-  }).addCard(item);
+  }, (item) => {
+      item.getCardId();
+      console.log(item);
+      // handleLikeClick(item.id)
+  }, () => {
+      deletePopup.open()
+    }
+    ).addCard(item);
 }
 
 const cardsList = new Section(
@@ -68,26 +80,22 @@ const cardsList = new Section(
 
 cardsList.renderItems();
 
-const user = new UserInfo({nameElementSelector: '.profile__name', jobElementSelector: '.profile__job'});
+const user = new UserInfo({nameElementSelector: '.profile__name', jobElementSelector: '.profile__job', avatarSelector: '.profile__avatar-input'});
 
 const userData = await api.getUserInfoServer()
   .then((user) => {
-    console.log(user);
     return user;
   })
   .catch((err) => {
     console.log(err);
   });
 
-user.setUserInfo({name: userData.name, job: userData.about});
+user.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar});
 
 const profilePopup = new PopupWithForm({
   handleFormSubmit: async (item) => {
     const userData = await api.editProfile({name: item.name, about: item.job})
-      .then((user) => {
-        console.log(user);
-        return user;
-      })
+      .then(user => user)
       .catch((err) => {
         console.log(err);
       });
@@ -111,9 +119,38 @@ profileEditButton.addEventListener('click', () => {
   profilePopup.open();
 })
 
+const deletePopup = new PopupWithForm ({}, '.popup_delete-pic');
+deletePopup.setEventListeners();
+
+const avatarPopup = new PopupWithForm ({ handleFormSubmit:  async () => {
+    const newAvatar = await api.changeUserAvatar(avatarPopup.getUserInfo())
+      .then(res => res)
+      .catch(err => err);
+    console.log(avatarPopup.getUserInfo());
+    console.log('newAvatar', newAvatar);
+    console.log('user', user);
+    user.setUserInfo({avatar: newAvatar.avatar});
+    avatarPopup.close();
+    avatarPopup.resetForm();
+    avatarValidation.toggleButtonState();
+  },
+  handlePopupClose: () => {
+    avatarValidation.hideErrors();
+    avatarPopup.resetForm();
+    avatarValidation.toggleButtonState();
+  }
+}, '.popup_edit-avatar');
+avatarPopup.setEventListeners();
+
+
+const avatar = document.querySelector('.profile__edit-avatar');
+avatar.addEventListener('click', () => avatarPopup.open());
+
 const addCardPopup = new PopupWithForm({
     handleFormSubmit: async (item) => {
       const newCard = await api.addUserCard(item.name, item.link)
+        // .then(() => { 
+        //   document.querySelector('.popup__save').textContent = 'Сохранение...';})
         .then(res => res)
         .catch(err => err);
 
@@ -139,3 +176,11 @@ const showImagePopup = new PopupWithImage(showImagePopupSelector);
 showImagePopup.setEventListeners();
 
 
+//Карточки должны отображаться на странице только после получения id пользователя
+// const promises = [userData, newCard]
+//
+// // Передаём массив с промисами методу Promise.all
+// Promise.all(promises)
+//   .then((results) => {
+//     console.log(results); // ["Первый промис", "Второй промис"]
+//   }); 

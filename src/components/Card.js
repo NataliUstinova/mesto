@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(card, template, handleCardClick, handleDeleteClick, handleLikeClick) {
+  constructor(card, template, handleCardClick, handleLikeClick, handleDeleteCardClick) {
     this._template = document.querySelector(template).content;
     
     this._title = card.name;
@@ -10,7 +10,7 @@ export default class Card {
     this._ownerId = card.ownerId;
     
     this._handleCardClick = handleCardClick;
-    this._handleDeleteCardClick = handleDeleteClick;
+    this._handleDeleteCardClick = handleDeleteCardClick;
     this._handleLikeClick = handleLikeClick;
   }
   
@@ -37,13 +37,15 @@ export default class Card {
   }
   
   _setEventListeners = () => {
-    this._likeButton.addEventListener('click',  this._likeCard);
-    this._deleteButton.addEventListener('click', this._deleteCard);
+    this._likeButton.addEventListener('click',  this._handleLikeClick);
+    this._deleteButton.addEventListener('click', this._handleDeleteCardClick);
     this._cardPic.addEventListener('click', this._handleCardClick);
   }
   _getTemplate = () => {
     return this._cardElement = this._template.querySelector('.card__element').cloneNode(true);
   }
+  
+  getCardId = () => this._id;
   
   //публичный метод создания карточки
   addCard() {
