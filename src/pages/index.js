@@ -48,14 +48,19 @@ let userId;
 
 function createCard(item) {
   return new Card(item, cardTemplate, () => {
-    showImagePopup.open({name: item.name, link: item.link});
-  }, id => {
-    deletePopup.open();
+  //   showImagePopup.open({name: item.name, link: item.link});
+  // }, id => {
+    // deletePopup.open();
   }).addCard(item);
 }
-const cardsList = new Section({
-    items:  initialCards,
-    renderer: (item) => {cardsList.addItem(createCard(item));}},
+
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      cardsList.addItem(createCard(item));
+    }
+  },
   cardsListSelector
 );
 
@@ -86,23 +91,26 @@ profileEditButton.addEventListener('click', () => {
 })
 
 const addCardPopup = new PopupWithForm({
-  handleFormSubmit: (item) => {
-    const newCardInput = {
-      name: item.name,
-      link: item.link
-    };
-    cardsList.addItem(createCard(newCardInput));
-    addCardPopup.close();
-    addCardPopup.resetForm();
-    addCardValidation.toggleButtonState();
-  },
-  handlePopupClose: () => {
-    addCardValidation.hideErrors();
-    addCardPopup.resetForm();
-    addCardValidation.toggleButtonState();
-  }
-  }, popupPicAddSelector);
-addCardPopup.setEventListeners()
+    handleFormSubmit: async (item) => {
+      const newCard = await api.addUserCard(item.name, item.link)
+        .then(res => res)
+        .catch(err => err);
+
+      cardsList.addItem(createCard(newCard));
+      addCardPopup.close();
+      addCardPopup.resetForm();
+      addCardValidation.toggleButtonState();
+    },
+    handlePopupClose: () => {
+      addCardValidation.hideErrors();
+      addCardPopup.resetForm();
+      addCardValidation.toggleButtonState();
+    }
+  }, 
+  popupPicAddSelector
+);
+
+addCardPopup.setEventListeners();
 
 newPicButton.addEventListener('click', () => addCardPopup.open());
 

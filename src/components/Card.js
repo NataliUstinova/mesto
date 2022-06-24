@@ -10,7 +10,7 @@ export default class Card {
     this._ownerId = card.ownerId;
     
     this._handleCardClick = handleCardClick;
-    this._handleDeleteCardClick = handleDeleteCardClick;
+    this._handleDeleteCardClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
   }
   
@@ -51,8 +51,11 @@ export default class Card {
     this._cardPic = this._cardElement.querySelector('.card__image');
     this._likeButton = this._cardElement.querySelector('.card__like');
     this._deleteButton = this._cardElement.querySelector('.card__delete');
+
+    
     this._cardPic.src = this._link;
     this._cardPic.alt = this._title;
+
     this._cardElement.querySelector('.card__title').textContent = this._title;
   
     this._setEventListeners();
