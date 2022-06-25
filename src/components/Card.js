@@ -42,9 +42,6 @@ export default class Card {
     return this._cardElement = this._template.querySelector('.card__element').cloneNode(true);
   }
   
-  //Получить айди карточки  
-  getCardId = () => this._id;
-  
   //публичный метод создания карточки
   addCard() {
     this._getTemplate();

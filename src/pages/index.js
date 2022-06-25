@@ -136,9 +136,12 @@ profileEditButton.addEventListener('click', () => {
 })
 
 const popupDeleteCard = new PopupWithForm ({ 
-  handleFormSubmit: () => { 
+  handleFormSubmit: () => {
+    let saveButton = renderLoading(event.target);
+    saveButton.textContent = 'Удаление...'; 
     api.deleteCard(selectedCard._id)
       .then(() => {
+        saveButton.textContent = 'Да';
         selectedCard.deleteCard();
         selectedCard = null;
         popupDeleteCard.close();
