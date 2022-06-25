@@ -45,3 +45,5 @@ export const initialCards = (await api.getInitialCards()
     console.log(status);
     return [];
   })).reverse();
+
+export const avatar = document.querySelector('.profile__edit-avatar');

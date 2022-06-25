@@ -13,6 +13,7 @@ import { initialCards,
   cardTemplate,
   showImagePopupSelector,
   formAvatar,
+  avatar
   } from '../utils/constants.js';
 import Section from '../components/Section.js'
 import Card from '../components/Card.js'
@@ -57,7 +58,11 @@ const cardsList = new Section(
   cardsListSelector
 );
 
-cardsList.renderItems();
+(function checkUserData() { 
+  if (userData._id) {
+    cardsList.renderItems();
+  }
+})();
 
 function createCard(card) {
   const newCard = new Card({
@@ -174,17 +179,7 @@ const avatarPopup = new PopupWithForm ({
 avatarPopup.setEventListeners();
 
 
-const avatar = document.querySelector('.profile__edit-avatar');
 avatar.addEventListener('click', () => avatarPopup.open());
-
-// function findPopupSaveButton() {
-//   event.target.childNodes.forEach(node => {
-//         if (node?.classList?.contains('popup__save')) {
-//           saveButton = node;
-//           saveButton.textContent = 'Сохранение...';
-//         }
-//       });
-// }
 
 const addCardPopup = new PopupWithForm({
     handleFormSubmit: async (item, event) => {
@@ -221,13 +216,3 @@ const addCardPopup = new PopupWithForm({
 addCardPopup.setEventListeners();
 
 newPicButton.addEventListener('click', () => addCardPopup.open());
-
-
-//Карточки должны отображаться на странице только после получения id пользователя
-// const promises = [userData, newCard]
-//
-// // Передаём массив с промисами методу Promise.all
-// Promise.all(promises)
-//   .then((results) => {
-//     console.log(results); // ["Первый промис", "Второй промис"]
-//   }); 
