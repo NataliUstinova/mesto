@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._formElement.querySelectorAll('.popup__input');
   }
   
-  resetForm() {
+  _resetForm() {
     this._formElement.reset();
   }
   
@@ -32,5 +32,6 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._handlePopupClose();
+    this._resetForm();
   }
 }
