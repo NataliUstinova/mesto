@@ -1,5 +1,3 @@
-import { api } from "../components/Api.js";
-
 //popup show pic
 export const popupShowPic = document.querySelector('.popup_show-pic');
 export const fullImage = popupShowPic.querySelector('.popup__full-image');
@@ -38,12 +36,5 @@ export const cardsListSelector = '.cards__list';
 export const cardTemplate = '.card__template';
 
 export const showImagePopupSelector = '.popup_show-pic';
-
-export const initialCards = (await api.getInitialCards()
-  .then(cards => cards)
-  .catch(status => {
-    console.log(status);
-    return [];
-  })).reverse();
 
 export const avatar = document.querySelector('.profile__edit-avatar');

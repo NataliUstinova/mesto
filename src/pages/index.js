@@ -1,5 +1,5 @@
 import './index.css';
-import { initialCards,
+import {
   popupEditProfileSelector,
   profileEditButton, 
   formProfile,
@@ -21,7 +21,23 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import { api } from '../components/Api.js';
+import Api from '../components/Api.js';
+
+//Api
+export const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
+  headers: {
+    authorization: '46f10111-7535-41c9-bac2-e4a6e0f14e0d',
+    'Content-Type': 'application/json'
+  }
+});
+
+const initialCards = (await api.getInitialCards()
+  .then(cards => cards)
+  .catch(status => {
+    console.log(status);
+    return [];
+  })).reverse();
 
 //Validation
 const editProfileValidation = new FormValidator(validationOptions, formProfile);
@@ -89,7 +105,7 @@ function createCard(card) {
     }, 
     handleDeleteCardClick: () => {
       selectedCard = newCard;
-      deletePopup.open();
+      popupDeleteCard.open();
     }
   })
   return newCard.addCard(card);
@@ -133,20 +149,20 @@ profileEditButton.addEventListener('click', () => {
   profilePopup.open();
 })
 
-const deletePopup = new PopupWithForm ({ 
-  handleFormSubmit: async (event) => { 
+const popupDeleteCard = new PopupWithForm ({ 
+  handleFormSubmit: async () => { 
     await api.deleteCard(selectedCard._id)
-      .then(res => {
+      .then(() => {
         selectedCard.deleteCard();
         selectedCard = null;
-        deletePopup.close();
+        popupDeleteCard.close();
       })
       .catch(err => console.log(err));
   }, 
   handlePopupClose: () => null},
   '.popup_delete-pic'
 );
-deletePopup.setEventListeners();
+popupDeleteCard.setEventListeners();
 
 const avatarPopup = new PopupWithForm ({ 
   handleFormSubmit:  
@@ -181,7 +197,7 @@ avatarPopup.setEventListeners();
 
 avatar.addEventListener('click', () => avatarPopup.open());
 
-const addCardPopup = new PopupWithForm({
+const popupAddCard = new PopupWithForm({
     handleFormSubmit: async (item, event) => {
       let saveButton = null;
 
@@ -200,19 +216,19 @@ const addCardPopup = new PopupWithForm({
         .catch(err => err);
 
       cardsList.addItem(createCard(newCard));
-      addCardPopup.close();
-      addCardPopup.resetForm();
+      popupAddCard.close();
+      popupAddCard.resetForm();
       addCardValidation.toggleButtonState();
     },
     handlePopupClose: () => {
       addCardValidation.hideErrors();
-      addCardPopup.resetForm();
+      popupAddCard.resetForm();
       addCardValidation.toggleButtonState();
     }
   }, 
   popupPicAddSelector
 );
 
-addCardPopup.setEventListeners();
+popupAddCard.setEventListeners();
 
-newPicButton.addEventListener('click', () => addCardPopup.open());
+newPicButton.addEventListener('click', () => popupAddCard.open());

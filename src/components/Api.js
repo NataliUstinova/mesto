@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -83,10 +83,3 @@ class Api {
       .then(this._checkServerResponse)
   }
 }
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
-  headers: {
-    authorization: '46f10111-7535-41c9-bac2-e4a6e0f14e0d',
-    'Content-Type': 'application/json'
-  }
-}); 
