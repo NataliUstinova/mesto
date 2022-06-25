@@ -91,9 +91,20 @@ function createCard(card) {
 }
 
 const profilePopup = new PopupWithForm({
-  handleFormSubmit: async (item) => {
+  handleFormSubmit: async (item, event) => {
+    let saveButton = null;
+
+      event.target.childNodes.forEach(node => {
+        if (node?.classList?.contains('popup__save')) {
+          saveButton = node;
+          saveButton.textContent = 'Сохранение...';
+        }
+      });
     const userData = await api.editProfile({name: item.name, about: item.job})
-      .then(user => user)
+      .then(user => { 
+        saveButton.textContent = 'Сохранить';
+        return user;
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -134,9 +145,20 @@ deletePopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm ({ 
   handleFormSubmit:  
-  async (avatar) => {
+  async (avatar,  event) => {
+    let saveButton = null;
+
+      event.target.childNodes.forEach(node => {
+        if (node?.classList?.contains('popup__save')) {
+          saveButton = node;
+          saveButton.textContent = 'Сохранение...';
+        }
+      });
     const response = await api.changeUserAvatar(avatar.avatarLink)
-      .then(res => res)
+      .then(res => {
+        saveButton.textContent = 'Сохранить';
+        return res;
+      })
       .catch(err => err);
     user.setUserInfo({name: userData.name, job: userData.about, avatar: response.avatar});
     avatarPopup.close();
@@ -155,6 +177,15 @@ avatarPopup.setEventListeners();
 const avatar = document.querySelector('.profile__edit-avatar');
 avatar.addEventListener('click', () => avatarPopup.open());
 
+// function findPopupSaveButton() {
+//   event.target.childNodes.forEach(node => {
+//         if (node?.classList?.contains('popup__save')) {
+//           saveButton = node;
+//           saveButton.textContent = 'Сохранение...';
+//         }
+//       });
+// }
+
 const addCardPopup = new PopupWithForm({
     handleFormSubmit: async (item, event) => {
       let saveButton = null;
@@ -162,13 +193,13 @@ const addCardPopup = new PopupWithForm({
       event.target.childNodes.forEach(node => {
         if (node?.classList?.contains('popup__save')) {
           saveButton = node;
-          saveButton.textContent = 'Сохранение...';
+          saveButton.textContent = 'Создание...';
         }
       });
       
       const newCard = await api.addUserCard(item.name, item.link)
         .then(res => {
-          saveButton.textContent = 'Сохранить';
+          saveButton.textContent = 'Создать';
           return res;
         })
         .catch(err => err);
