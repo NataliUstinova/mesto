@@ -67,6 +67,7 @@ class Api {
   }
   
   addLike(id) {
+    console.log('id:', id);
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
@@ -76,7 +77,7 @@ class Api {
   
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
+      method: 'DELETE',
       headers: this._headers
     })
       .then(this._checkServerResponse)

@@ -39,9 +39,9 @@ export const cardTemplate = '.card__template';
 
 export const showImagePopupSelector = '.popup_show-pic';
 
-export const initialCards = await api.getInitialCards()
+export const initialCards = (await api.getInitialCards()
   .then(cards => cards)
   .catch(status => {
     console.log(status);
     return [];
-  });
+  })).reverse();

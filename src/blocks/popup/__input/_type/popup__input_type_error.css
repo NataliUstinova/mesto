@@ -11,8 +11,12 @@
   max-width: 358px;
 }
 
-.popup__input_type_error:nth-child(2) {
+.popup__input_type_error:last-of-type {
   top: 204px;
+}
+
+.popup__input_type_error:first-of-type {
+  top: 142px;
 }
 
 @media screen and (max-width: 540px) {
@@ -20,8 +24,13 @@
     top: 147px;
     left: 22px;
   }
-  .popup__input_type_error:nth-child(2) {
+
+  .popup__input_type_error:last-of-type {
     top: 210px;
+  }
+  .popup__input_type_error:first-of-type {
+    top: 147px;
+    left: 22px;
   }
 }
 

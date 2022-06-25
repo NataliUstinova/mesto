@@ -32,41 +32,20 @@ addCardValidation.enableValidation();
 avatarValidation.enableValidation();
 
 
-let userId;
+let selectedCard = null;
+const user = new UserInfo({nameElementSelector: '.profile__name', jobElementSelector: '.profile__job', avatarSelector: '.profile__avatar-input'});
+const userData = await api.getUserInfoServer()
+  .then((user) => {
+    return user;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-function render(card) {
-  const newCard = {
-    name: card.name,
-    link: card.link,
-    likes: card.likes,
-    id: card._id,
-    userId: userId,
-    ownerId: card.owner._id
-  }
-  
-  const cardElement = createCard(newCard);
-  cardsList.append(cardElement);
-}
+user.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar});
 
-// const handleLikeClick = () => {
-//   const likedCard = 
-// }
-
-
-function createCard(item) {
-  return new Card(item, cardTemplate, () => {
-  //   showImagePopup.open({name: item.name, link: item.link});
-  // }, id => {
-    // deletePopup.open();
-  }, (item) => {
-      item.getCardId();
-      console.log(item);
-      // handleLikeClick(item.id)
-  }, () => {
-      deletePopup.open()
-    }
-    ).addCard(item);
-}
+const showImagePopup = new PopupWithImage(showImagePopupSelector);
+showImagePopup.setEventListeners();
 
 const cardsList = new Section(
   {
@@ -80,17 +59,36 @@ const cardsList = new Section(
 
 cardsList.renderItems();
 
-const user = new UserInfo({nameElementSelector: '.profile__name', jobElementSelector: '.profile__job', avatarSelector: '.profile__avatar-input'});
-
-const userData = await api.getUserInfoServer()
-  .then((user) => {
-    return user;
+function createCard(card) {
+  const newCard = new Card({
+    card: card, 
+    userId: userData._id, 
+    template: cardTemplate, 
+    handleCardClick: () => {
+      console.log(showImagePopup);
+      showImagePopup.open({name: card.name, link: card.link});
+    }, 
+    handleLikeClick: async (event) => {
+      let likes = null;
+      if (!newCard.isLiked()) {
+        likes = await api.addLike(card._id)
+          .then(res => res)
+          .catch(err => err);
+      }
+      else {
+        likes = await api.deleteLike(card._id)
+          .then(res => res)
+          .catch(err => err);
+      }
+      newCard.setLikes(likes?.likes);
+    }, 
+    handleDeleteCardClick: () => {
+      selectedCard = newCard;
+      deletePopup.open();
+    }
   })
-  .catch((err) => {
-    console.log(err);
-  });
-
-user.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar});
+  return newCard.addCard(card);
+}
 
 const profilePopup = new PopupWithForm({
   handleFormSubmit: async (item) => {
@@ -99,7 +97,7 @@ const profilePopup = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       });
-    user.setUserInfo({name: userData.name, job: userData.about});
+    user.setUserInfo({...userData, job: userData.about});
     profilePopup.close();
     profilePopup.resetForm();
     editProfileValidation.toggleButtonState();
@@ -119,17 +117,28 @@ profileEditButton.addEventListener('click', () => {
   profilePopup.open();
 })
 
-const deletePopup = new PopupWithForm ({}, '.popup_delete-pic');
+const deletePopup = new PopupWithForm ({ 
+  handleFormSubmit: async (event) => { 
+    await api.deleteCard(selectedCard._id)
+      .then(res => {
+        selectedCard.deleteCard();
+        selectedCard = null;
+        deletePopup.close();
+      })
+      .catch(err => console.log(err));
+  }, 
+  handlePopupClose: () => null},
+  '.popup_delete-pic'
+);
 deletePopup.setEventListeners();
 
-const avatarPopup = new PopupWithForm ({ handleFormSubmit:  async () => {
-    const newAvatar = await api.changeUserAvatar(avatarPopup.getUserInfo())
+const avatarPopup = new PopupWithForm ({ 
+  handleFormSubmit:  
+  async (avatar) => {
+    const response = await api.changeUserAvatar(avatar.avatarLink)
       .then(res => res)
       .catch(err => err);
-    console.log(avatarPopup.getUserInfo());
-    console.log('newAvatar', newAvatar);
-    console.log('user', user);
-    user.setUserInfo({avatar: newAvatar.avatar});
+    user.setUserInfo({name: userData.name, job: userData.about, avatar: response.avatar});
     avatarPopup.close();
     avatarPopup.resetForm();
     avatarValidation.toggleButtonState();
@@ -147,11 +156,21 @@ const avatar = document.querySelector('.profile__edit-avatar');
 avatar.addEventListener('click', () => avatarPopup.open());
 
 const addCardPopup = new PopupWithForm({
-    handleFormSubmit: async (item) => {
+    handleFormSubmit: async (item, event) => {
+      let saveButton = null;
+
+      event.target.childNodes.forEach(node => {
+        if (node?.classList?.contains('popup__save')) {
+          saveButton = node;
+          saveButton.textContent = 'Сохранение...';
+        }
+      });
+      
       const newCard = await api.addUserCard(item.name, item.link)
-        // .then(() => { 
-        //   document.querySelector('.popup__save').textContent = 'Сохранение...';})
-        .then(res => res)
+        .then(res => {
+          saveButton.textContent = 'Сохранить';
+          return res;
+        })
         .catch(err => err);
 
       cardsList.addItem(createCard(newCard));
@@ -171,9 +190,6 @@ const addCardPopup = new PopupWithForm({
 addCardPopup.setEventListeners();
 
 newPicButton.addEventListener('click', () => addCardPopup.open());
-
-const showImagePopup = new PopupWithImage(showImagePopupSelector);
-showImagePopup.setEventListeners();
 
 
 //Карточки должны отображаться на странице только после получения id пользователя
