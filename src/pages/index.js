@@ -15,7 +15,6 @@ import {
   formAvatar,
   avatar
   } from '../utils/constants.js';
-import { renderLoading } from '../utils/utils.js';
 import Section from '../components/Section.js'
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js';
@@ -105,13 +104,12 @@ function createCard(card) {
 }
 
 const profilePopup = new PopupWithForm({
-  handleFormSubmit: (item, event) => {
-    let saveButton = renderLoading(event.target);
-    saveButton.textContent = 'Сохранение...';
+  handleFormSubmit: (item) => {
+    profilePopup.renderLoading({status: true, loadingText: 'Сохранение...'});
 
     api.editProfile({name: item.name, about: item.job})
-      .then(_user => { 
-        saveButton.textContent = 'Сохранить';
+      .then(_user => {
+        profilePopup.renderLoading({status: false, initialText: 'Сохранить'});
         user.setUserInfo({name: _user.name, job: _user.about, avatar: userData.avatar});
         profilePopup.close();
         editProfileValidation.toggleButtonState();
@@ -137,11 +135,10 @@ profileEditButton.addEventListener('click', () => {
 
 const popupDeleteCard = new PopupWithForm ({ 
   handleFormSubmit: () => {
-    let saveButton = renderLoading(event.target);
-    saveButton.textContent = 'Удаление...'; 
+    popupDeleteCard.renderLoading({status: true, loadingText: 'Удаление...'});
     api.deleteCard(selectedCard._id)
       .then(() => {
-        saveButton.textContent = 'Да';
+        popupDeleteCard.renderLoading({status: false, initialText: 'Да'});
         selectedCard.deleteCard();
         selectedCard = null;
         popupDeleteCard.close();
@@ -155,13 +152,11 @@ popupDeleteCard.setEventListeners();
 
 const avatarPopup = new PopupWithForm ({ 
   handleFormSubmit:  
-  (avatar,  event) => {
-    let saveButton = renderLoading(event.target);
-    saveButton.textContent = 'Сохранение...';
-
+  (avatar) => {
+    avatarPopup.renderLoading({status: true, loadingText: 'Сохранение...'})
     api.changeUserAvatar(avatar.avatarLink)
       .then(res => {
-        saveButton.textContent = 'Сохранить';
+        avatarPopup.renderLoading({status: false, initialText: 'Сохранить'});
         user.setUserInfo({name: userData.name, job: userData.about, avatar: res.avatar});
         avatarPopup.close();
         avatarValidation.toggleButtonState();
@@ -180,13 +175,11 @@ avatarPopup.setEventListeners();
 avatar.addEventListener('click', () => avatarPopup.open());
 
 const popupAddCard = new PopupWithForm({
-    handleFormSubmit: (item, event) => {
-      let saveButton = renderLoading(event.target);
-      saveButton.textContent = 'Сохранение...';
-      
+    handleFormSubmit: (item) => {
+      popupAddCard.renderLoading({status: true, loadingText: 'Сохранение...'});
       api.addUserCard(item.name, item.link)
         .then(res => {
-          saveButton.textContent = 'Создать';
+          popupAddCard.renderLoading({status: false, initialText: 'Cоздать'});
           cardsList.addItem(createCard(res));
           popupAddCard.close();
           addCardValidation.toggleButtonState();
