@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup {
     this._handlePopupClose = handlePopupClose;
     this._formElement = this._popup.querySelector('.popup__form');
     this._inputList = this._formElement.querySelectorAll('.popup__input');
-    this._saveButton = this._formElement.querySelector('.popup__save');
+    this._buttonSubmit = this._formElement.querySelector('.popup__save');
   }
   
   _resetForm() {
@@ -32,9 +32,9 @@ export default class PopupWithForm extends Popup {
   
   renderLoading({status, loadingText, initialText}) {
     if (status) {
-      this._saveButton.textContent = loadingText;
+      this._buttonSubmit.textContent = loadingText;
     } else {
-      this._saveButton.textContent = initialText;
+      this._buttonSubmit.textContent = initialText;
     }
   }
   
