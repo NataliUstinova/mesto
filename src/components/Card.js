@@ -14,19 +14,24 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
   }
   
-  _likeCard = () => {
-    this._likeButton.classList.toggle('card__like_active');
-  }
-  
   isLiked() {
     return this._likes.find(user => user._id === this._userId);
+  }
+
+  _updateLikesView() {
+    this._cardElement.querySelector('.card__like-counter').textContent = this._likes.length;
+    if (this._likes.length === 0) {
+      this._cardElement.querySelector('.card__like-counter').textContent = '';
+    }
+    if (this.isLiked()) this._cardElement.querySelector('.card__like')
+      .classList.add('card__like_active');
+    else this._cardElement.querySelector('.card__like')
+      .classList.remove('card__like_active');
   }
   
   setLikes(likes) {
     this._likes = likes;
-    this._likeCountElement = this._cardElement.querySelector('.card__like-counter');
-    this._likeCountElement.textContent = this._likes.length ? this._likes.length : '';
-    this._likeCard();
+    this._updateLikesView();
   }
   
   deleteCard = () => {
@@ -55,9 +60,7 @@ export default class Card {
     this._cardElement.querySelector('.card__title').textContent = this._title;
   
     this._setEventListeners();
-    if (this.isLiked()) {
-      this.setLikes(this._likes);
-    }
+    this._updateLikesView()
     
     if(this._ownerId !== this._userId) {
       this._deleteButton.style.display = 'none';
